@@ -11,13 +11,15 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
         if (!authHeader) return errorResponse(res, 401, "You're not authorized")
 
         const token = authHeader.split(' ')[1];
+        
+
 
         if (!token) return errorResponse(res, 401, "Not authorized...")
 
         const decoded = jwt.verify(token, JWT_SECRET);
-
+        
         if (decoded) {
-            req.userId = (decoded as JwtPayload).id;
+            req.userId = (decoded as JwtPayload).userId;
             next();
 
         } else {

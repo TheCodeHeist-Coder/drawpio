@@ -36,8 +36,12 @@ router.post("/signup", async (req: Request, res: Response) => {
         });
 
         // token login -> put it in common
+        const token = jwt.sign({
+            userId: user.id
+        }, JWT_SECRET, {expiresIn: "7d"});
 
         return res.status(201).json({
+            token,
             user: {
                 userId: user.id,
                 username: user.username,
