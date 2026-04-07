@@ -38,6 +38,30 @@ router.post("/room", authMiddleware, async (req: Request, res: Response) => {
 
 
 
+router.get("/chat/:roomId", async (req: Request, res: Response) => {
+    try {
+        const roomId = Number(req.params.roomId);
+
+        const messages = await prisma.chat.findMany({
+            where: { roomId: roomId },
+            orderBy: { id: 'desc' },
+            take: 50
+        })
+
+        return res.status(200).json({
+            success: true,
+            messages
+        })
+
+    } catch (error) {
+        console.log('Error while fetching messages', error)
+    }
+})
+
+
+
+
+
 
 
 
