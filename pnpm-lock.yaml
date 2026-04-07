@@ -20,6 +20,9 @@ importers:
 
   apps/http-server:
     dependencies:
+      '@repo/common':
+        specifier: workspace:*
+        version: link:../../packages/common
       '@repo/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -87,6 +90,9 @@ importers:
 
   apps/ws-server:
     dependencies:
+      '@repo/common':
+        specifier: workspace:*
+        version: link:../../packages/common
       '@repo/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -111,6 +117,19 @@ importers:
       ws:
         specifier: ^8.20.0
         version: 8.20.0
+
+  packages/common:
+    dependencies:
+      '@types/dotenv':
+        specifier: ^8.2.3
+        version: 8.2.3
+      dotenv:
+        specifier: ^17.4.1
+        version: 17.4.1
+    devDependencies:
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
 
   packages/db:
     dependencies:

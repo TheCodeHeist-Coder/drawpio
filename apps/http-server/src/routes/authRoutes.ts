@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import { errorResponse } from "../utils/error";
 import { prisma } from "@repo/db";
+import { JWT_SECRET } from "@repo/common";
 
 const router:Router = Router();
 
